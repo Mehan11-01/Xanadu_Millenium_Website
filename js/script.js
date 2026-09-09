@@ -760,21 +760,154 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ========================================
+// WhatsApp Tracking + GCLID + Reference ID
+// + Google Sheet
+// + Different WhatsApp Click Types
+// + Message Controlled From HTML
+// ========================================
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    const GOOGLE_SHEET_URL =
+        "https://script.google.com/macros/s/AKfycby7-9HkktDSgMtIr21LXthCyNqAxTDuDuHU3pL7-ur-T5B573vbzYMTvX4uHBe36s_Ckg/exec";
 
     document.body.addEventListener("click", function (e) {
 
         const link = e.target.closest('a[href*="wa.link"]');
 
         if (link) {
+            e.preventDefault();
+
+            // ========================================
+            // 1. Capture Google Ads identifiers
+            // ========================================
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            let gclid = urlParams.get("gclid");
+            let gbraid = urlParams.get("gbraid");
+            let wbraid = urlParams.get("wbraid");
+
+            if (gclid) {
+                localStorage.setItem("bhp_gclid", gclid);
+            } else {
+                gclid = localStorage.getItem("bhp_gclid") || "";
+            }
+
+            if (gbraid) {
+                localStorage.setItem("bhp_gbraid", gbraid);
+            } else {
+                gbraid = localStorage.getItem("bhp_gbraid") || "";
+            }
+
+            if (wbraid) {
+                localStorage.setItem("bhp_wbraid", wbraid);
+            } else {
+                wbraid = localStorage.getItem("bhp_wbraid") || "";
+            }
+
+            // ========================================
+            // 2. Generate unique BHP Reference ID
+            // ========================================
+
+            const reference =
+                "BHP-" + Math.floor(10000 + Math.random() * 90000);
+            // ========================================
+            // 3. Click date/time
+            // ========================================
+
+            const clickDateTime = new Date().toISOString();
+
+            // ========================================
+            // 4. Get WhatsApp type + message from HTML
+            // ========================================
+
+            const whatsappType =
+                link.getAttribute("data-whatsapp-type") || "general";
+
+            const whatsappMessage =
+                link.getAttribute("data-whatsapp-message") ||
+                "Hi, I'm interested in Bangsar Hill Park.";
+
+            // ========================================
+            // 5. DataLayer tracking
+            // ========================================
 
             window.dataLayer = window.dataLayer || [];
+
             window.dataLayer.push({
                 event: "whatsapp_click",
-                whatsapp_url: link.href
+                whatsapp_url: "https://wa.me/60198995496",
+                whatsapp_type: whatsappType,
+                whatsapp_message: whatsappMessage,
+                gclid: gclid,
+                gbraid: gbraid,
+                wbraid: wbraid,
+                reference_id: reference
             });
 
+            // ========================================
+            // 6. Send WhatsApp click to Google Sheet
+            // ========================================
+
+            const sheetData = {
+                GCLID: gclid,
+                BHP_Reference: reference,
+                Click_DateTime: clickDateTime,
+                WhatsApp_Click: "YES",
+                WhatsApp_Type: whatsappType,
+
+                Customer_Name: "",
+                Customer_Phone: "",
+
+                Lead_Status: "New",
+
+                // IMPORTANT:
+                // Leave these blank until lead becomes Qualified
+                Conversion_Name: "BHP - Qualified WhatsApp Lead",
+
+                Currency: "MYR",
+
+                Uploaded_to_Google_Ads: "NO"
+            };
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(sheetData)
+            }).catch(function (error) {
+
+                console.error(
+                    "Google Sheet tracking error:",
+                    error
+                );
+
+            });
+
+            // ========================================
+            // 7. Create WhatsApp message
+            // ========================================
+
+            const finalMessage =
+                whatsappMessage +
+                "\n\nReference: " +
+                reference;
+
+            // ========================================
+            // 8. Open WhatsApp
+            // ========================================
+
+            const whatsappURL =
+                "https://wa.me/60198995496?text=" +
+                encodeURIComponent(finalMessage);
+
+            window.open(whatsappURL, "_blank");
         }
+
     });
 
 });
