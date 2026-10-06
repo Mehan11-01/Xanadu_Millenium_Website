@@ -861,7 +861,12 @@ section {
 }
 
 .location {
-    background: var(--bg-white)
+    background: var(--bg-white);
+    padding-bottom: 24px
+}
+
+.location .info-blocks {
+    margin-bottom: 0
 }
 
 .location-content {
@@ -1281,7 +1286,8 @@ section {
 }
 
 .layout-section {
-    background: var(--bg-white)
+    background: var(--bg-white);
+    padding-top: 24px
 }
 
 .layout-tabs {
