@@ -187,47 +187,23 @@ if (propertyVideo) {
 // ========================================
 const layoutTabs = document.querySelectorAll('.layout-tab');
 const layoutData = {
-    '2a': {
-        title: 'Type 2A',
-        room: '3 Bedrooms + 2 Bathrooms',
-        size: '978 sq.ft',
-        image: 'assets/images/typea.avif'
-    },
-    '2a1': {
-        title: 'Type 2A1',
-        room: '2+1 Bedrooms + 2 Bathrooms',
-        size: '978 sq.ft',
-        image: 'assets/images/type 2A1.avif'
-    },
-    '2b1': {
-        title: 'Type 2B1',
+    'a': {
+        title: 'Type A',
         room: '2 Bedrooms + 2 Bathrooms',
-        size: '917 sq.ft',
-        image: 'assets/images/Type 2B1.avif'
+        size: '978 sq.ft',
+        image: 'assets/images/Type A.webp'
     },
-    '3a': {
-        title: 'Type 3A',
-        room: '3 Bedrooms + 3 Bathrooms',
-        size: '1,435 sq.ft',
-        image: 'assets/images/Type 3A.avif'
+    'b': {
+        title: 'Type B',
+        room: '3 Bedrooms + 2 Bathrooms',
+        size: '936 - 981 sq.ft',
+        image: 'assets/images/Type B.webp'
     },
-    '3b': {
-        title: 'Type 3B',
-        room: '3+1 Bedrooms + 3+1 Bathrooms',
-        size: '1,478 sq.ft',
-        image: 'assets/images/Type 3B.avif'
-    },
-    '3c': {
-        title: 'Type 3C',
-        room: '3+1 Bedrooms + 3+1 Bathrooms',
-        size: '1372 sq.ft',
-        image: 'assets/images/Type 3C.avif'
-    },
-    '1a': {
-        title: 'Type 1A',
-        room: '3 Bedrooms + 3 Bathrooms',
-        size: '1,345 sq.ft',
-        image: 'assets/images/Type1A.webp'
+    'c': {
+        title: 'Type C',
+        room: '4 Bedrooms + 3 Bathrooms',
+        size: '1323 sq.ft',
+        image: 'assets/images/Type C.webp'
     }
 };
 
@@ -266,6 +242,74 @@ layoutTabs.forEach(tab => {
                 }, 50);
             }, 200);
         }
+    });
+});
+
+// ========================================
+// Facilities Tabs
+// ========================================
+const facilityTabs = document.querySelectorAll('.facility-tab');
+const facilityPanels = document.querySelectorAll('.facility-panel');
+
+function activateFacilityTab(selectedTab) {
+    const selectedFacility = selectedTab.getAttribute('data-facility');
+    const selectedPanel = document.querySelector(`[data-facility-panel="${selectedFacility}"]`);
+
+    if (!selectedPanel) return;
+
+    facilityTabs.forEach(tab => {
+        const isActive = tab === selectedTab;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        tab.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+
+    facilityPanels.forEach(panel => {
+        const isActive = panel === selectedPanel;
+        panel.hidden = !isActive;
+        panel.classList.toggle('active', isActive);
+
+        if (isActive) {
+            panel.classList.add('is-transitioning');
+            window.setTimeout(() => {
+                panel.classList.remove('is-transitioning');
+            }, 30);
+        }
+    });
+}
+
+facilityTabs.forEach((tab, index) => {
+    tab.setAttribute('tabindex', tab.classList.contains('active') ? '0' : '-1');
+
+    tab.addEventListener('click', () => {
+        activateFacilityTab(tab);
+    });
+
+    tab.addEventListener('keydown', e => {
+        let nextIndex = index;
+
+        if (e.key === 'ArrowRight') {
+            nextIndex = (index + 1) % facilityTabs.length;
+        } else if (e.key === 'ArrowLeft') {
+            nextIndex = (index - 1 + facilityTabs.length) % facilityTabs.length;
+        } else if (e.key === 'Home') {
+            nextIndex = 0;
+        } else if (e.key === 'End') {
+            nextIndex = facilityTabs.length - 1;
+        } else {
+            return;
+        }
+
+        e.preventDefault();
+        facilityTabs[nextIndex].focus();
+        activateFacilityTab(facilityTabs[nextIndex]);
+    });
+});
+
+document.querySelectorAll('.facility-image img').forEach(image => {
+    image.addEventListener('error', () => {
+        image.hidden = true;
+        image.closest('.facility-image')?.classList.add('image-missing');
     });
 });
 
@@ -420,6 +464,139 @@ window.addEventListener('resize', () => {
         updateGalleryCarousel(false);
     }
 });
+
+
+// ========================================
+// Showroom Carousel with Swipe Support
+// ========================================
+const showroomTrack = document.getElementById('showroomTrack');
+const showroomPrev = document.getElementById('showroomPrev');
+const showroomNext = document.getElementById('showroomNext');
+const showroomSlides = document.querySelectorAll('.showroom-slide');
+
+let currentShowroomSlide = 0;
+let showroomStartX = 0;
+let showroomCurrentX = 0;
+let showroomIsDragging = false;
+
+function getShowroomSlidesToShow() {
+    if (window.innerWidth <= 640) {
+        return 1;
+    }
+
+    if (window.innerWidth <= 1024) {
+        return 2;
+    }
+
+    return 3;
+}
+
+function getShowroomSlideStep() {
+    if (!showroomSlides.length) return 0;
+
+    const slideWidth = showroomSlides[0].offsetWidth;
+    const trackStyles = window.getComputedStyle(showroomTrack);
+    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+
+    return slideWidth + gap;
+}
+
+function updateShowroomButtons() {
+    const maxSlide = Math.max(0, showroomSlides.length - getShowroomSlidesToShow());
+
+    if (showroomPrev) {
+        showroomPrev.disabled = currentShowroomSlide === 0;
+    }
+
+    if (showroomNext) {
+        showroomNext.disabled = currentShowroomSlide >= maxSlide;
+    }
+}
+
+function updateShowroomCarousel(animate = true) {
+    if (!showroomTrack || !showroomSlides.length) return;
+
+    const maxSlide = Math.max(0, showroomSlides.length - getShowroomSlidesToShow());
+    currentShowroomSlide = Math.min(currentShowroomSlide, maxSlide);
+    showroomTrack.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+    showroomTrack.style.transform = `translateX(-${currentShowroomSlide * getShowroomSlideStep()}px)`;
+    updateShowroomButtons();
+}
+
+function nextShowroomSlide() {
+    const maxSlide = Math.max(0, showroomSlides.length - getShowroomSlidesToShow());
+
+    if (currentShowroomSlide < maxSlide) {
+        currentShowroomSlide++;
+        updateShowroomCarousel();
+    }
+}
+
+function prevShowroomSlide() {
+    if (currentShowroomSlide > 0) {
+        currentShowroomSlide--;
+        updateShowroomCarousel();
+    }
+}
+
+function handleShowroomTouchStart(e) {
+    if (!showroomTrack) return;
+
+    showroomStartX = e.touches ? e.touches[0].clientX : e.clientX;
+    showroomCurrentX = showroomStartX;
+    showroomIsDragging = true;
+    showroomTrack.style.transition = 'none';
+}
+
+function handleShowroomTouchMove(e) {
+    if (!showroomIsDragging || !showroomTrack) return;
+
+    showroomCurrentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const diffX = showroomStartX - showroomCurrentX;
+    const offset = currentShowroomSlide * getShowroomSlideStep() + diffX;
+    showroomTrack.style.transform = `translateX(-${offset}px)`;
+}
+
+function handleShowroomTouchEnd() {
+    if (!showroomIsDragging) return;
+
+    showroomIsDragging = false;
+    const diffX = showroomStartX - showroomCurrentX;
+    const threshold = 50;
+
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+            nextShowroomSlide();
+        } else {
+            prevShowroomSlide();
+        }
+    } else {
+        updateShowroomCarousel();
+    }
+}
+
+if (showroomTrack && showroomSlides.length > 0) {
+    updateShowroomCarousel(false);
+
+    if (showroomNext) {
+        showroomNext.addEventListener('click', nextShowroomSlide);
+    }
+
+    if (showroomPrev) {
+        showroomPrev.addEventListener('click', prevShowroomSlide);
+    }
+
+    showroomTrack.addEventListener('touchstart', handleShowroomTouchStart, { passive: true });
+    showroomTrack.addEventListener('touchmove', handleShowroomTouchMove, { passive: true });
+    showroomTrack.addEventListener('touchend', handleShowroomTouchEnd);
+
+    showroomTrack.addEventListener('mousedown', handleShowroomTouchStart);
+    showroomTrack.addEventListener('mousemove', handleShowroomTouchMove);
+    showroomTrack.addEventListener('mouseup', handleShowroomTouchEnd);
+    showroomTrack.addEventListener('mouseleave', handleShowroomTouchEnd);
+
+    window.addEventListener('resize', () => updateShowroomCarousel(false));
+}
 
 
 // ========================================
@@ -760,152 +937,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ========================================
-// WhatsApp Tracking + GCLID + Reference ID
-// + Google Sheet
-// + Different WhatsApp Click Types
-// + Message Controlled From HTML
-// ========================================
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    const GOOGLE_SHEET_URL =
-        "https://script.google.com/macros/s/AKfycby7-9HkktDSgMtIr21LXthCyNqAxTDuDuHU3pL7-ur-T5B573vbzYMTvX4uHBe36s_Ckg/exec";
 
     document.body.addEventListener("click", function (e) {
 
         const link = e.target.closest('a[href*="wa.link"]');
 
-        if (link) {
+        if (!link) {
+            return;
+        }
+
+        // Track WhatsApp click
+        window.dataLayer = window.dataLayer || [];
+
+        const whatsappType =
+            link.getAttribute("data-whatsapp-type") || "general";
+
+        const whatsappMessage =
+            link.getAttribute("data-whatsapp-message") || "";
+
+        window.dataLayer.push({
+            event: "whatsapp_click",
+            whatsapp_url: link.href,
+            whatsapp_type: whatsappType,
+            whatsapp_message: whatsappMessage
+        });
+
+        // Open WhatsApp with the message
+        if (whatsappMessage) {
             e.preventDefault();
 
-            // ========================================
-            // 1. Capture Google Ads identifiers
-            // ========================================
-
-            const urlParams = new URLSearchParams(window.location.search);
-
-            let gclid = urlParams.get("gclid");
-            let gbraid = urlParams.get("gbraid");
-            let wbraid = urlParams.get("wbraid");
-
-            if (gclid) {
-                localStorage.setItem("bhp_gclid", gclid);
-            } else {
-                gclid = localStorage.getItem("bhp_gclid") || "";
-            }
-
-            if (gbraid) {
-                localStorage.setItem("bhp_gbraid", gbraid);
-            } else {
-                gbraid = localStorage.getItem("bhp_gbraid") || "";
-            }
-
-            if (wbraid) {
-                localStorage.setItem("bhp_wbraid", wbraid);
-            } else {
-                wbraid = localStorage.getItem("bhp_wbraid") || "";
-            }
-
-            // ========================================
-            // 2. Generate unique BHP Reference ID
-            // ========================================
-
-            const reference =
-                "BHP-" + Math.floor(10000 + Math.random() * 90000);
-            // ========================================
-            // 3. Click date/time
-            // ========================================
-
-            const clickDateTime = new Date().toISOString();
-
-            // ========================================
-            // 4. Get WhatsApp type + message from HTML
-            // ========================================
-
-            const whatsappType =
-                link.getAttribute("data-whatsapp-type") || "general";
-
-            const whatsappMessage =
-                link.getAttribute("data-whatsapp-message") ||
-                "Hi, I'm interested in Bangsar Hill Park.";
-
-            // ========================================
-            // 5. DataLayer tracking
-            // ========================================
-
-            window.dataLayer = window.dataLayer || [];
-
-            window.dataLayer.push({
-                event: "whatsapp_click",
-                whatsapp_url: "https://wa.me/60198995496",
-                whatsapp_type: whatsappType,
-                whatsapp_message: whatsappMessage,
-                gclid: gclid,
-                gbraid: gbraid,
-                wbraid: wbraid,
-                reference_id: reference
-            });
-
-            // ========================================
-            // 6. Send WhatsApp click to Google Sheet
-            // ========================================
-
-            const sheetData = {
-                GCLID: gclid,
-                BHP_Reference: reference,
-                Click_DateTime: clickDateTime,
-                WhatsApp_Click: "YES",
-                WhatsApp_Type: whatsappType,
-
-                Customer_Name: "",
-                Customer_Phone: "",
-
-                Lead_Status: "New",
-
-                // IMPORTANT:
-                // Leave these blank until lead becomes Qualified
-                Conversion_Name: "BHP - Qualified WhatsApp Lead",
-
-                Currency: "MYR",
-
-                Uploaded_to_Google_Ads: "NO"
-            };
-
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: JSON.stringify(sheetData)
-            }).catch(function (error) {
-
-                console.error(
-                    "Google Sheet tracking error:",
-                    error
-                );
-
-            });
-
-            // ========================================
-            // 7. Create WhatsApp message
-            // ========================================
-
-            const finalMessage =
-                whatsappMessage +
-                "\n\nReference: " +
-                reference;
-
-            // ========================================
-            // 8. Open WhatsApp
-            // ========================================
-
-            const whatsappURL =
+            const whatsappUrl =
                 "https://wa.me/60198995496?text=" +
-                encodeURIComponent(finalMessage);
+                encodeURIComponent(whatsappMessage);
 
-            window.open(whatsappURL, "_blank");
+            window.open(whatsappUrl, "_blank");
         }
 
     });
