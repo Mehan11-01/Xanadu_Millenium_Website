@@ -167,7 +167,7 @@ section {
 
 .navbar {
     position: absolute;
-    top: 50px;
+    top: var(--top-header-height, 50px);
     left: 0;
     width: 100%;
     background: 0 0;
@@ -332,7 +332,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../background.webp) center/cover;
+    background: url(../assets/images/optimized/background-1440.webp) center/cover;
     text-align: center;
     color: var(--bg-white)
 }
@@ -871,7 +871,7 @@ section {
 
 .location-content {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     gap: 50px;
     align-items: start
 }
@@ -2539,7 +2539,7 @@ section {
 }
 
 .contact {
-    background: url(../assets/images/contact_us_wallpaper.webp) center/cover no-repeat;
+    background: var(--secondary-navy) center/cover no-repeat;
     background-attachment: fixed;
     color: var(--bg-white);
     position: relative;
@@ -3014,16 +3014,17 @@ select:invalid {
     height: 300px
 }
 
-@media (max-width:768px) {
+@media (max-width:1100px) {
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: var(--nav-menu-top, 80px);
         left: -100%;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: calc(100dvh - var(--nav-menu-top, 80px));
         background: var(--primary-black);
         flex-direction: column;
-        padding: 40px 20px;
+        padding: 20px;
+        gap: 8px;
         transition: var(--transition);
         overflow-y: auto
     }
@@ -3033,6 +3034,7 @@ select:invalid {
     }
 
     .nav-link {
+        display: block;
         font-size: 1.1rem;
         padding: 15px 0;
         width: 100%;
@@ -3055,7 +3057,9 @@ select:invalid {
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px)
     }
+}
 
+@media (max-width:768px) {
     .hero-content {
         padding: 0 15px
     }
@@ -3194,7 +3198,7 @@ select:invalid {
     }
 
     .navbar {
-        top: 76px
+        top: var(--top-header-height, 76px)
     }
 
     .logo-img {
@@ -3359,4 +3363,165 @@ select:invalid {
     .hero-content {
         margin-top: 72px
     }
+}
+
+/* Fluid sizing and safe content widths across phones, tablets and desktops. */
+.location-content > *,
+.layout-details > *,
+.about-content > *,
+.contact-grid > *,
+.facility-panel > * {
+    min-width: 0;
+}
+
+section[id] {
+    scroll-margin-top: calc(var(--nav-height, 80px) + 16px);
+}
+
+.hamburger {
+    border: 0;
+    background: transparent;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-menu .nav-link {
+    white-space: nowrap;
+}
+
+.location-left h2,
+.about-text h2,
+.contact-info h2,
+.contact-form-card h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    overflow-wrap: break-word;
+}
+
+.contact-item {
+    overflow-wrap: anywhere;
+}
+
+.contact-item > * {
+    min-width: 0;
+}
+
+.contact-form-card {
+    padding: clamp(20px, 4vw, 40px);
+}
+
+.layout-tab,
+.gallery-next,
+.gallery-prev,
+.showroom-next,
+.showroom-prev {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+[class^="btn-"] {
+    max-width: 100%;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+@media (max-width:1100px) {
+    .contact {
+        background-attachment: scroll;
+    }
+
+    .logo-img {
+        margin-right: 0;
+    }
+
+    .whatsapp-nav-btn {
+        margin-left: auto;
+        margin-right: 12px;
+    }
+
+    .nav-menu {
+        align-items: stretch;
+        visibility: hidden;
+    }
+
+    .nav-menu.active {
+        visibility: visible;
+    }
+}
+
+@media (max-width:768px) {
+    .nav-wrapper {
+        padding: 10px 0;
+    }
+
+    .image-bg {
+        left: 10px;
+        width: calc(100% - 10px);
+    }
+
+    .hero {
+        min-height: 100svh;
+        padding-top: 140px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 7vw, 3rem);
+    }
+
+    .facility-tabs {
+        flex-wrap: wrap;
+        overflow: visible;
+        justify-content: center;
+    }
+
+    .facility-tab {
+        white-space: normal;
+    }
+
+    .contact {
+        background-attachment: scroll;
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .fade-in,
+    .section-header {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.video-container {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    max-height: 80svh;
+}
+
+.video-controls[hidden] {
+    display: none;
+}
+
+@media (hover:none) {
+    .contact-card:hover,
+    .feature-card:hover,
+    .location-right:hover {
+        transform: none;
+    }
+}
+
+@media (max-width:768px) {
+    .hero {
+        background-image: url(../assets/images/optimized/hero-mobile.webp);
+    }
+}
+
+.contact.has-background {
+    background-image: url(../assets/images/optimized/contact-us-wallpaper-1440.webp);
 }

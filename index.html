@@ -4,7 +4,7 @@
 <head>
 
     <!-- Google Tag Manager (FIRST) -->
-    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-TQVPGHFH"></script><script>
+    <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start': new Date().getTime(), event: 'gtm.js'
@@ -21,54 +21,57 @@
     <!-- Basic SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="Discover Puchong Lakeside Condo from RM370K: fully furnished 2–4 bedroom homes, a covered walkway to LRT Puchong Perdana, and resort-style facilities.">
 
     <title>Puchong Lakeside Condo | Fully Furnished Luxury Condo</title>
 
     <!-- ✅ Favicon (FULL SET) -->
-    <link rel="icon" href="assets/images/logo.webp" type="image/webp">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.webp">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.webp">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.webp">
+    <link rel="icon" href="assets/images/optimized/logo-180.webp" type="image/webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/optimized/apple-touch-icon.png">
 
     <!-- ✅ Social Sharing (VERY IMPORTANT for ads/WhatsApp) -->
     <meta property="og:title" content="Puchong Lakeside Condo | Fully Furnished Luxury Condo">
-    <meta property="og:description" content="Luxury condo in Puchong from RM870K. Prime location near LRT.">
-    <meta property="og:image" content="https://yourdomain.com/assets/images/hero.webp">
+    <meta property="og:description" content="Fully furnished 2–4 bedroom homes in Puchong from RM370K, with a covered walkway to LRT Puchong Perdana and resort-style facilities.">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Puchong Lakeside Condo | Fully Furnished Luxury Condo">
+    <meta name="twitter:description" content="Explore fully furnished 2–4 bedroom homes in Puchong from RM370K, near LRT Puchong Perdana.">
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 
     <!-- Fonts (non-blocking) -->
-    <link rel="stylesheet" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <!-- Fallback (NO JS) -->
     <noscript>
         <link rel="stylesheet" href="css/style.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
 
     <!-- ✅ LCP BOOST (VERY IMPORTANT) -->
-    <link rel="preload" as="image" href="assets/background.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/optimized/hero-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+
+    <link rel="preload" as="image" href="assets/images/optimized/background-1440.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Schema (you already had this – keep it) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Residence",
+      "@type": "ApartmentComplex",
       "name": "Puchong Lakeside Condo",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Puchong",
-        "addressRegion": "Kuala Lumpur",
+        "addressRegion": "Selangor",
         "addressCountry": "MY"
       }
     }
@@ -90,12 +93,12 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar scrolled" id="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
                     <a href="#home">
-                        <img src="assets/images/logo.webp" alt="Puchong Lakeside Condo Logo" class="logo-img" width="180" height="160">
+                        <img decoding="async" src="assets/images/optimized/logo-180.webp" alt="Puchong Lakeside Condo Logo" class="logo-img" width="180" height="160">
                     </a>
                 </div>
                 <ul class="nav-menu" id="navMenu">
@@ -111,11 +114,11 @@
                     <i class="fab fa-whatsapp"></i>
                     <span>+60 19-899 5496</span>
                 </a>
-                <div class="hamburger" id="hamburger">
+                <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-controls="navMenu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </div>
     </nav>
@@ -146,7 +149,7 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/location.webp" alt="Puchong Lakeside Condo Location Map" loading="lazy" width="800" height="412">
+                        <img decoding="async" srcset="assets/images/optimized/location-480.webp 480w, assets/images/location.webp 960w" sizes="(max-width: 768px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 65px) / 2), 380px" src="assets/images/location.webp" alt="Puchong Lakeside Condo Location Map" loading="lazy" width="960" height="610">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">Prime Location</h3>
@@ -155,7 +158,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/Fully Furnished.webp" alt="Fully Furnished Units" loading="lazy" width="900" height="675">
+                        <img decoding="async" srcset="assets/images/optimized/fully-furnished-480.webp 480w, assets/images/optimized/fully-furnished-960.webp 960w, assets/images/optimized/fully-furnished-1440.webp 1440w" sizes="(max-width: 768px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 65px) / 2), 380px" src="assets/images/optimized/fully-furnished-1440.webp" alt="Fully Furnished Units" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">Fully Furnished &amp; Interior Designed</h3>
@@ -164,7 +167,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/puchong_perdana_3.webp" alt="LRT Puchong" loading="lazy" width="650" height="433">
+                        <img decoding="async" src="assets/images/puchong_perdana_3.webp" alt="LRT Puchong" loading="lazy" width="1024" height="768">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">Covered Walkway</h3>
@@ -174,7 +177,7 @@
                 
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/RESIDENTIAL TITTLE &amp; GreenRE Gold.webp" alt="Pure Residential Title" loading="lazy" width="700" height="700">
+                        <img decoding="async" src="assets/images/RESIDENTIAL TITTLE &amp; GreenRE Gold.webp" alt="Pure Residential Title" loading="lazy" width="1024" height="1024">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">GreenRE Gold &amp; Pure Residential Title</h3>
@@ -183,7 +186,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/facilities.webp" alt="Resort-Style Facilities" loading="lazy" width="580" height="362">
+                        <img decoding="async" srcset="assets/images/optimized/facilities-480.webp 480w, assets/images/optimized/facilities-960.webp 960w, assets/images/optimized/facilities-1440.webp 1440w" sizes="(max-width: 768px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 65px) / 2), 380px" src="assets/images/optimized/facilities-1440.webp" alt="Resort-Style Facilities" loading="lazy" width="1440" height="1060">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">66+ Resort-Style Facilities</h3>
@@ -192,7 +195,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-image">
-                        <img src="assets/images/FREE.webp" alt="Attractive Package" loading="lazy" width="889" height="500">
+                        <img decoding="async" src="assets/images/FREE.webp" alt="Attractive Package" loading="lazy" width="740" height="740">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">Attractive Package</h3>
@@ -208,7 +211,7 @@
     <!-- Video Section -->
     <section class="video-section section">
         <div class="video-container">
-            <video id="propertyVideo" class="property-video" muted="" loop="" playsinline="" preload="none">
+            <video id="propertyVideo" class="property-video" data-poster="assets/images/optimized/fully-furnished-960.webp" muted="" loop="" playsinline="" preload="none">
                 <source src="assets/images/XM video.mp4" type="video/mp4">
             </video>
             <div class="video-controls">
@@ -242,7 +245,7 @@
                     <a href="https://wa.link/loaghr" class="btn-location" data-whatsapp-type="Get_Exact_Location" data-whatsapp-message="Hi Premm, I would like to get the location for Puchong Lakeside Condo. Thank you." target="_blank">Get Exact Location</a>
                 </div>
                 <div class="location-right">
-                    <img src="assets/images/XM Location.webp" alt="Puchong location aerial view" loading="lazy" width="1389" height="1368">
+                    <img decoding="async" src="assets/images/XM Location.webp" alt="Puchong location aerial view" loading="lazy" width="1888" height="1536">
                 </div>
             </div>
             <div class="info-blocks">
@@ -344,7 +347,7 @@
                     </div>
                 </div>
                 <div class="layout-image-container">
-                    <img id="layoutImage" src="assets/images/Type C.webp" alt="Type C floor plan" loading="lazy" width="506" height="493" style="opacity: 1;">
+                    <img decoding="async" id="layoutImage" src="assets/images/Type C.webp" alt="Type C floor plan" loading="lazy" width="535" height="422" style="opacity: 1;">
                 </div>
             </div>
 
@@ -362,24 +365,24 @@
             </div>
 
             <div class="showroom-carousel" aria-label="Showroom photo carousel">
-                <div class="showroom-track" id="showroomTrack" style="transition: none; transform: translateX(-1083px);">
+                <div class="showroom-track" id="showroomTrack">
                     <div class="showroom-slide">
-                        <img src="assets/images/Fully Furnished.webp" alt="Showroom dining and living area" loading="lazy" width="5712" height="4284">
+                        <img decoding="async" srcset="assets/images/optimized/fully-furnished-480.webp 480w, assets/images/optimized/fully-furnished-960.webp 960w, assets/images/optimized/fully-furnished-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/fully-furnished-1440.webp" alt="Showroom dining and living area" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="showroom-slide">
-                        <img src="assets/images/showroom2.webp" alt="Showroom dining and living area" loading="lazy" width="5712" height="4284">
+                        <img decoding="async" srcset="assets/images/optimized/showroom2-480.webp 480w, assets/images/optimized/showroom2-960.webp 960w, assets/images/optimized/showroom2-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/showroom2-1440.webp" alt="Showroom dining and living area" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="showroom-slide">
-                        <img src="assets/images/showroom3.webp" alt="Showroom dining and living area" loading="lazy" width="5712" height="4284">
+                        <img decoding="async" srcset="assets/images/optimized/showroom3-480.webp 480w, assets/images/optimized/showroom3-960.webp 960w, assets/images/optimized/showroom3-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/showroom3-1440.webp" alt="Showroom dining and living area" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="showroom-slide">
-                        <img src="assets/images/showroom5.webp" alt="Showroom kitchen and furnishing" loading="lazy" width="900" height="675">
+                        <img decoding="async" srcset="assets/images/optimized/showroom5-480.webp 480w, assets/images/optimized/showroom5-960.webp 960w, assets/images/optimized/showroom5-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/showroom5-1440.webp" alt="Showroom kitchen and furnishing" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="showroom-slide">
-                        <img src="assets/images/showroom6.webp" alt="Showroom bedroom interior" loading="lazy" width="900" height="675">
+                        <img decoding="async" srcset="assets/images/optimized/showroom6-480.webp 480w, assets/images/optimized/showroom6-960.webp 960w, assets/images/optimized/showroom6-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/showroom6-1440.webp" alt="Showroom bedroom interior" loading="lazy" width="1440" height="1080">
                     </div>
                     <div class="showroom-slide">
-                        <img src="assets/images/showroom7.webp" alt="Showroom bedroom interior" loading="lazy" width="900" height="675">
+                        <img decoding="async" srcset="assets/images/optimized/showroom7-480.webp 480w, assets/images/optimized/showroom7-960.webp 960w, assets/images/optimized/showroom7-1440.webp 1440w" sizes="(max-width: 640px) calc(100vw - 30px), (max-width: 1024px) calc((100vw - 60px) / 2), 360px" src="assets/images/optimized/showroom7-1440.webp" alt="Showroom bedroom interior" loading="lazy" width="1440" height="1920">
                     </div>
                 </div>
                 <button class="showroom-prev" id="showroomPrev" type="button" aria-label="Previous showroom photo">‹</button>
@@ -411,7 +414,7 @@
                 <div class="facility-panel active" id="facility-panel-lake-park" role="tabpanel" aria-labelledby="facility-tab-lake-park" data-facility-panel="lake-park">
                     <div class="facility-media">
                         <div class="facility-image" data-placeholder="Add assets/images/lake-park.webp">
-                            <img src="assets/images/lakefacilities.webp" alt="Lake Park facilities plan" loading="lazy" width="1200" height="800">
+                            <img decoding="async" src="assets/images/LakeFacilities.webp" alt="Lake Park facilities plan" loading="lazy" width="590" height="423">
                         </div>
                     </div>
                     <div class="facility-content">
@@ -457,7 +460,7 @@
                 <div class="facility-panel" id="facility-panel-level-7" role="tabpanel" aria-labelledby="facility-tab-level-7" data-facility-panel="level-7" hidden="">
                     <div class="facility-media">
                         <div class="facility-image" data-placeholder="Add assets/images/level-7-facilities.webp">
-                            <img src="assets/images/level7.webp" alt="Level 7 facilities plan" loading="lazy" width="1200" height="800">
+                            <img decoding="async" src="assets/images/level7.webp" alt="Level 7 facilities plan" loading="lazy" width="550" height="453">
                         </div>
                     </div>
                     <div class="facility-content">
@@ -542,7 +545,7 @@
                 <div class="facility-panel" id="facility-panel-sky" role="tabpanel" aria-labelledby="facility-tab-sky" data-facility-panel="sky" hidden="">
                     <div class="facility-media">
                         <div class="facility-image" data-placeholder="Add assets/images/sky-facilities-level-36.webp">
-                            <img src="assets/images/Rooftop.webp" alt="Sky Facilities Level 36 plan" loading="lazy" width="1200" height="800">
+                            <img decoding="async" src="assets/images/Rooftop.webp" alt="Sky Facilities Level 36 plan" loading="lazy" width="499" height="500">
                         </div>
                     </div>
                     <div class="facility-content">
@@ -584,28 +587,28 @@
             <div class="gallery-carousel">
                 <div class="gallery-track" id="galleryTrack" style="transition: none; transform: translateX(0px);">
                     <div class="gallery-slide">
-                        <img src="assets/images/F1.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f1-480.webp 480w, assets/images/optimized/f1-960.webp 960w, assets/images/optimized/f1-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f1-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="853">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F2.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f2-480.webp 480w, assets/images/optimized/f2-960.webp 960w, assets/images/optimized/f2-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f2-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="806">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F3.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f3-480.webp 480w, assets/images/optimized/f3-960.webp 960w, assets/images/optimized/f3-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f3-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="855">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F4.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f4-480.webp 480w, assets/images/optimized/f4-960.webp 960w, assets/images/optimized/f4-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f4-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="861">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F5.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f5-480.webp 480w, assets/images/optimized/f5-960.webp 960w, assets/images/optimized/f5-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f5-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="892">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F6.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f6-480.webp 480w, assets/images/optimized/f6-960.webp 960w, assets/images/optimized/f6-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f6-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="835">
                     </div>
                     <div class="gallery-slide">
-                        <img src="assets/images/F7.webp" alt="Xanadu Millenium Facilitesx" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f7-480.webp 480w, assets/images/optimized/f7-960.webp 960w, assets/images/optimized/f7-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f7-1440.webp" alt="Xanadu Millenium Facilitesx" loading="lazy" width="1440" height="791">
                     </div>
                 <div class="gallery-slide">
-                        <img src="assets/images/F1.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1280" height="720">
+                        <img decoding="async" srcset="assets/images/optimized/f1-480.webp 480w, assets/images/optimized/f1-960.webp 960w, assets/images/optimized/f1-1440.webp 1440w" sizes="(max-width: 1100px) calc(100vw - 40px), 1100px" src="assets/images/optimized/f1-1440.webp" alt="Xanadu Millenium Facilites" loading="lazy" width="1440" height="853">
                     </div></div>
                 <button class="gallery-prev" id="galleryPrev">‹</button>
                 <button class="gallery-next" id="galleryNext">›</button>
@@ -636,7 +639,7 @@
             <div class="about-content">
                 <div class="about-image">
                     <div class="image-bg"></div>
-                    <img src="assets/images/premm.webp" alt="Premm - Bangsar Expert" loading="lazy" width="900" height="1350">
+                    <img decoding="async" src="assets/images/premm.webp" alt="Premm - Bangsar Expert" loading="lazy" width="900" height="1350">
                 </div>
                 <div class="about-text fade-in visible">
                     <h2>Hi I'm Premm,</h2>
@@ -678,11 +681,11 @@
                 <p class="section-subtitle">Hear from our satisfied clients</p>
             </div>
             <div class="testimonial-carousel">
-                <div class="testimonial-track" id="testimonialTrack" style="transition: transform 600ms ease-in-out; transform: translateX(-1035px);">
+                <div class="testimonial-track" id="testimonialTrack">
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing1.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing1.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="1206" height="899">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong> Mr K****k .</strong></p>
@@ -696,7 +699,7 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing2.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing2.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="830" height="1280">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong>Mr V***n</strong></p>
@@ -710,7 +713,7 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing3.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing3.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="1002" height="1280">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong> Mr &amp; Mrs S****h</strong></p>
@@ -728,7 +731,7 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing4.webp" alt="Bangsar-Hill-Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing4.webp" alt="Bangsar-Hill-Park's Client" loading="lazy" width="1036" height="1080">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong> Dr R***n </strong></p>
@@ -743,7 +746,7 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing5.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing5.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="1005" height="1080">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong>Mr &amp; Mrs T*****h</strong></p>
@@ -758,7 +761,7 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing6.webp" alt="Bangsar-Hill-Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing6.webp" alt="Bangsar-Hill-Park's Client" loading="lazy" width="720" height="1280">
                             </div>
                             <div class="testimonial-content">
                                 <p class="testimonial-text"><strong>Mr &amp; Mrs R***n</strong></p>
@@ -771,7 +774,7 @@
                 <div class="testimonial-slide clone">
                         <div class="testimonial-card" style="height: 770px;">
                             <div class="testimonial-image">
-                                <img src="assets/images/signing1.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="675" height="900">
+                                <img decoding="async" src="assets/images/signing1.webp" alt="Bangsar Hill Park's Client" loading="lazy" width="1206" height="899">
                             </div>
                             <div class="testimonial-content">
                                <p class="testimonial-text"><strong> Mr K****k .</strong></p>
@@ -848,7 +851,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-company">
-                <img src="assets/images/Introduction_of_Affinity_thumbnail-copy.webp" alt="Affinity Realty Logo" class="footer-logo" width="1600" height="304">
+                <img decoding="async" src="assets/images/Introduction_of_Affinity_thumbnail-copy.webp" alt="Affinity Realty Logo" class="footer-logo" loading="lazy" width="1600" height="304">
                 <p><strong>Affinity Realty Sdn. Bhd. (202501024989) (1626402-M)</strong><br>
                     Premm Enbasegaran (REN62971)<br>
                     Company Address:<br>
@@ -867,6 +870,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="js/script.js" defer=""></script>
+    <script src="js/script.min.js" defer=""></script>
 </body>
 </html>
