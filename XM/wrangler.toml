@@ -1,5 +1,0 @@
-name = "xanadu-millenium-website"
-compatibility_date = "2026-10-08"
-
-[assets]
-directory = "."
