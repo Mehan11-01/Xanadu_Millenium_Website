@@ -3,3 +3,5 @@ test-results/
 assets/images/*.mp4
 css/style.css
 js/script.js
+.wrangler/
+js/script.js

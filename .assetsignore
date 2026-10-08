@@ -1,0 +1,10 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+.DS_Store
+.gitignore
+.assetsignore
+wrangler.toml
+css/style.css
+js/script.js
